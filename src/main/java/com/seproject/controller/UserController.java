@@ -30,10 +30,9 @@ public class UserController {
         //若失败，需要根据错误类型，返回对应的错误提示信息
         RegisterRespData data = new RegisterRespData();
         switch (res) {
-//            case -1:
-//                //用户名已存在
-//                data.setMsg("用户名已存在");
-//                break;
+            case -1:
+                data.setMsg("手机号已被注册");
+                break;
         }
         return Result.error(data);
     }
