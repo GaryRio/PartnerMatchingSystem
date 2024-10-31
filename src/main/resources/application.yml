@@ -4,10 +4,10 @@ server:
     context-path: /
 spring:
   datasource:
-    url: jdbc:postgresql://121.36.4.131:26000/db_tpcc?ApplicationName=app1
-    driver-class-name: org.postgresql.Driver
-    username: gary
-    password: GRgaorui142993
+    url: jdbc:mysql://127.0.0.1:3306/partner_matching
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: gaorui030213
 mybatis:
-  type-aliases-package: com.gr.pojo
+  type-aliases-package: com.seproject.pojo
   mapper-locations: classpath:mybatis/*.xml
