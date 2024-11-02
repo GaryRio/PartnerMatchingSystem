@@ -10,4 +10,4 @@ spring:
     password: gaorui030213
 mybatis:
   type-aliases-package: com.seproject.pojo
-  mapper-locations: classpath:mybatis/*.xml
+#  mapper-locations: classpath:mybatis/*.xml

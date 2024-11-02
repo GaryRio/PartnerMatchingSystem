@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a9ae08e0-2fee-45a2-96c9-add719f48df9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seproject/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seproject/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/seproject/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seproject/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seproject/service/Impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seproject/service/Impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seproject/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seproject/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seproject/resp/RegisterRespData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seproject/resp/UserRegisterRespData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +91,10 @@
       <workItem from="1730251765179" duration="681000" />
       <workItem from="1730353245730" duration="802000" />
       <workItem from="1730354060897" duration="7216000" />
-      <workItem from="1730365000737" duration="449000" />
+      <workItem from="1730365000737" duration="1242000" />
+      <workItem from="1730371868305" duration="1748000" />
+      <workItem from="1730382612311" duration="251000" />
+      <workItem from="1730508717159" duration="17392000" />
     </task>
     <servers />
   </component>
