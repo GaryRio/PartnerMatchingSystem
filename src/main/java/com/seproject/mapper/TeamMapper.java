@@ -30,6 +30,9 @@ public interface TeamMapper {
     @Select("select * from team_audit where teamID = #{teamID}")
     List<Team> selectTeamAuditByTeamID(int teamID);
 
+    @Update("update team set leaderID = #{leaderID} where teamID = #{teamID}")
+    int updateTeamLeaderIDByTeamID(int teamID, int leaderID);
+
     @Update("update team set teamName = #{teamName} where teamID = #{teamID}")
     int updateTeamNameByTeamID(int teamID, String teamName);
 
@@ -53,4 +56,7 @@ public interface TeamMapper {
 
     @Delete("delete from team_audit where teamID = #{teamID}")
     int deleteTeamAuditByTeamID(int teamID);
+
+    @Delete("delete from team where teamID = #{teamID}")
+    int deleteTeamByTeamID(int teamID);
 }

@@ -1,9 +1,9 @@
 package com.seproject.service;
 
-import com.seproject.req.TeamAuditReq;
-import com.seproject.req.TeamCreateReq;
-import com.seproject.req.TeamUpdateReq;
-import org.springframework.stereotype.Service;
+import com.seproject.pojo.Team;
+import com.seproject.req.*;
+
+import java.util.List;
 
 public interface TeamService {
     int create(TeamCreateReq req);
@@ -11,4 +11,12 @@ public interface TeamService {
     int update(TeamUpdateReq req);
 
     int audit(TeamAuditReq req);
+
+    int updateLeader(TeamUpdateLeaderReq req);
+
+    Team getTeamInfo(TeamShowInfoReq req);
+
+    List<String> findAllMembers(TeamShowInfoReq req);
+
+    int delete(TeamDeleteReq req);
 }

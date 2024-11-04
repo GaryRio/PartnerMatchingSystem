@@ -1,16 +1,14 @@
 package com.seproject.service.Impl;
 
-import com.mysql.cj.xdevapi.AbstractDataResult;
-import com.mysql.cj.xdevapi.UpdateSpec;
+import com.seproject.mapper.MemberMapper;
 import com.seproject.mapper.TeamMapper;
 import com.seproject.pojo.Team;
-import com.seproject.req.TeamAuditReq;
-import com.seproject.req.TeamCreateReq;
-import com.seproject.req.TeamUpdateReq;
+import com.seproject.req.*;
 import com.seproject.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +19,8 @@ public class TeamServiceImpl implements TeamService {
     private static final int TEAM_AUDIT_END = 9; //销毁（创建失败/删除）
     @Autowired
     TeamMapper teamMapper;
+    @Autowired
+    MemberMapper memberMapper;
 
 
     @Override
@@ -35,6 +35,15 @@ public class TeamServiceImpl implements TeamService {
         req.setTeamAudit(TEAM_AUDIT_CREATE);
         //存储队伍数据到数据库中，返回值是数据库的effected rows
         int res = teamMapper.insertTeam(req);
+        if (res != 1) return -9; //存储出错
+
+        //获取teamID
+        teams = teamMapper.selectTeamByTeamName(teamName);
+        Team team = teams.get(0);
+        int teamID = team.getTeamID();
+        //在member中也要添加相应信息
+        MemberAddReq addReq = new MemberAddReq(req.getLeaderID(), teamID, MemberServiceImpl.MEMBER_TYPE_LEADER);
+        res = memberMapper.insertMember(addReq);
 
         //存储成功
         if(res == 1) return 0;
@@ -62,6 +71,61 @@ public class TeamServiceImpl implements TeamService {
         res = teamMapper.updateTeamAuditByTeamID(req.getTeamID(), TEAM_AUDIT_UPDATE);
         if (res != 1) {
             return -9; //修改出错
+        }
+        return 0;
+    }
+
+    @Override
+    public int updateLeader(TeamUpdateLeaderReq req) {
+        int teamID = req.getTeamID();
+        int currentLeaderID = req.getCurrentLeaderID();
+        int newLeaderID = req.getNewLeaderID();
+
+        int res = memberMapper.updateMemberType(teamID, currentLeaderID, MemberServiceImpl.MEMBER_TYPE_COMMON);
+        if (res != 1) {
+            return -9; //数据库更新错误
+        }
+        res = memberMapper.updateMemberType(teamID, newLeaderID, MemberServiceImpl.MEMBER_TYPE_LEADER);
+        if (res != 1) {
+            return -9; //数据库更新错误
+        }
+        res = teamMapper.updateTeamLeaderIDByTeamID(teamID, newLeaderID);
+        if (res != 1) {
+            return -9; //数据库更新错误
+        }
+        return 0;
+    }
+
+    @Override
+    public Team getTeamInfo(TeamShowInfoReq req) {
+        int teamID = req.getTeamID();
+        //查找队伍信息
+        List<Team> teams = teamMapper.selectTeamByTeamID(teamID);
+        if(teams.size() == 0)
+            return null;
+        //成功则返回Team对象
+        return teams.get(0);
+    }
+
+    @Override
+    public List<String> findAllMembers(TeamShowInfoReq req) {
+        int teamID = req.getTeamID();
+        //先查找到所有成员的ID
+        List<Integer> memberIDs = memberMapper.selectAllMembersIDOfTeamByTeamID(teamID);
+
+        //TODO：将ID转换为名称
+        List<String> members = new ArrayList<>();
+
+        return members;
+    }
+
+    @Override
+    public int delete(TeamDeleteReq req) {
+        int teamID = req.getTeamID();
+        //直接删除team表中的信息即可，member表中的信息会因为teamID的外键约束级联删除
+        int res = teamMapper.deleteTeamByTeamID(teamID);
+        if(res != 1) {
+            return -9; //数据库更新错误
         }
         return 0;
     }
