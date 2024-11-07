@@ -20,9 +20,8 @@ public class SMSsend {
     static final String domain = "dysmsapi.aliyuncs.com";
 
     // 此处为开发者自己的AK(在阿里云访问控制台寻找)
-    static final String accessKeyId = "114";
-    //LTAI5tRL1R5TXUBe2Ua9cq2B-rdF9POkuk8ze8qOLV0JIpMI4dTJCsY
-    static final String accessKeySecret = "514";
+    static final String accessKeyId = "LTAI5tRL1R5TXUBe2Ua9cq2B";
+    static final String accessKeySecret = "rdF9POkuk8ze8qOLV0JIpMI4dTJCsY";
 
     // 用于存储验证码和对应的手机号及过期时间
     // 方便起见，暂时作为public
