@@ -6,10 +6,12 @@ import java.util.Date;
 public class UserRegisterReq {
     private int userID;
     private String userPassword;
+    private String userPasswordConfirm;
     private int userType;
     private String userName;
     private String userPhone;
     private Date registerTime;
+    private String userCode; //验证码
 
     public UserRegisterReq() {
     }
@@ -21,6 +23,12 @@ public class UserRegisterReq {
         this.userName = userName;
         this.userPhone = userPhone;
         this.registerTime = registerTime;
+    }
+
+    public String getUserCode() {   return userCode;}
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
 
     public int getUserID() {
@@ -37,6 +45,14 @@ public class UserRegisterReq {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public String getUserPasswordConfirm() {
+        return userPasswordConfirm;
+    }
+
+    public void setUserPasswordConfirm(String userPasswordConfirm) {
+        this.userPasswordConfirm = userPasswordConfirm;
     }
 
     public int getUserType() {
